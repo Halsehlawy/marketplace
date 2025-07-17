@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= foundListing.title %></title>
+</head>
+<body>
+    <div class="listing-detail-container">
+        <a href="/listings" class="back-button">← Back to Listings</a>
+        
+        <h1 class="listing-detail-title"><%= foundListing.title %></h1>
+        
+        <% if (foundListing.image) { %>
+            <img src="<%= foundListing.image %>" class="listing-detail-image" alt="Image of <%= foundListing.title %>" />
+        <% } %>
+        
+        <div class="listing-detail-description">
+            <%= foundListing.description %>
+        </div>
+        
+        <div class="listing-detail-price">
+            <%= foundListing.price %> BHD
+        </div>
+        
+        <div class="listing-detail-seller">
+            <strong>Sold By: </strong> 
+            <% if (foundListing.seller && foundListing.seller.username) { %>
+                <%= foundListing.seller.username %>
+            <% } else { %>
+                Unknown
+            <% } %>
+        </div>
+        <%if(foundListing.seller._id.equals(user._id)){%>
+        <div class="listing-actions">
+            <a href="/listings/<%= foundListing._id %>/edit" class="action-btn edit-btn">
+                 Edit Listing
+            </a>
+            <form method="POST" action="/listings/<%= foundListing._id %>?_method=DELETE" class="delete-form">
+                <button type="submit" class="action-btn delete-btn" >
+                     Delete Listing
+                </button>
+            </form>
+        </div>
+        <%}%>
+        
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2 class="comments-title">
+                 Comments 
+                <span class="comments-count"><%=foundListing.comments.length%></span>
+            </h2>
+            
+            <!-- Comment Form (only show if user is logged in) -->
+            <% if (user) { %>
+                <div class="comment-form">
+                    <h3>Leave a Comment</h3>
+                    <form method="POST" action="/listings/<%= foundListing._id %>/comments">
+                        <textarea name="content" placeholder="Write your comment here..." required></textarea>
+                        <button type="submit" class="comment-submit-btn">Post Comment</button>
+                    </form>
+                </div>
+            <% } else { %>
+                <div class="login-to-comment">
+                    <p>Please <a href="/auth/log-in">log in</a> to leave a comment.</p>
+                </div>
+            <% } %>
+            
+            <!-- Comments List -->
+            <div class="comments-list">
+                <% if (foundListing.comments && foundListing.comments.length > 0) { %>
+                    <% foundListing.comments.forEach(comment => { %>
+                        <div class="comment">
+                            <div class="comment-header">
+                                <span class="comment-author">
+                                    <%= comment.author ? comment.author.username : 'Anonymous' %>
+                                </span>
+                                <span class="comment-date">
+                                    <%= new Date(comment.createdAt).toLocaleDateString() %>
+                                </span>
+                            </div>
+                            <p class="comment-content"><%= comment.content %></p>
+                        </div>
+                    <% }) %>
+                <% } else { %>
+                    <div class="no-comments">
+                        <p>No comments yet. Be the first to comment!</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        
+        <div class="listing-detail-meta">
+            <span>Posted: <%= new Date(foundListing.createdAt).toLocaleDateString() %></span>
+            <span>Last Updated: <%= new Date(foundListing.updatedAt).toLocaleDateString() %></span>
+        </div>
+    </div>
+</body>
+</html>

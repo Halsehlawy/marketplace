@@ -8,6 +8,7 @@ const path = require('path');
 const session = require('express-session')
 const mongoStore = require('connect-mongo')
 const authController = require('./controllers/auth')
+const listingController = require('./controllers/listing')
 const isLoggedIn = require('./middleware/is-logged-in')
 const passUserToView = require('./middleware/pass-user-to-view')
 
@@ -22,7 +23,7 @@ mongoose.connection.on('connected',()=>{
 })
 
 // MIDDLEWARE
-
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({extended:false}))
 app.use(methodOverride('_method'))
 app.use(morgan('dev'))
@@ -39,6 +40,7 @@ app.use(passUserToView)
 
 // ROUTES
 app.use('/auth', authController);
+app.use('/listings',listingController)
 
 app.get('/',(req,res)=>{
     res.render('index.ejs',{title:'Sigma App'})

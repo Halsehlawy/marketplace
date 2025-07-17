@@ -1,0 +1,439 @@
+body{
+    background-color: cornsilk ;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Listings Styles */
+.actions {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.listing-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.listing-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.listing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.listing-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.listing-info {
+    padding: 15px;
+}
+
+.listing-title {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.listing-description {
+    margin: 0 0 10px 0;
+    color: #666;
+    line-height: 1.4;
+}
+
+.listing-price {
+    margin: 0 0 10px 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.listing-meta {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.listing-date {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.no-listings {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.no-listings p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Listing Detail Page Styles */
+.listing-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.listing-detail-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.listing-detail-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listing-detail-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #555;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    border-left: 4px solid #007bff;
+}
+
+.listing-detail-price {
+    font-size: 2em;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #e8f5e8;
+    border-radius: 8px;
+    border: 2px solid #28a745;
+}
+
+.listing-detail-seller {
+    font-size: 1.1em;
+    color: #666;
+    margin: 15px 0;
+    padding: 10px;
+    background: #f1f3f4;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.listing-detail-seller strong {
+    color: #333;
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background: #545b62;
+    color: white;
+}
+
+.listing-detail-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Action Buttons for Show Page */
+.listing-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0;
+    padding: 20px 0;
+    border-top: 1px solid #dee2e6;
+}
+
+.action-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: #212529;
+}
+
+.edit-btn:hover {
+    background: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.delete-form {
+    display: inline;
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Comments Section Styles */
+.comments-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #dee2e6;
+}
+
+.comments-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments-count {
+    background: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+.comment-form {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #dee2e6;
+}
+
+.comment-form h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2em;
+}
+
+.comment-form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1em;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.comment-submit-btn {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.comment-submit-btn:hover {
+    background: #0056b3;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comment {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.comment-date {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.comment-content {
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.no-comments {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #dee2e6;
+}
+
+.login-to-comment {
+    text-align: center;
+    padding: 20px;
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    border-radius: 8px;
+    color: #856404;
+}
+
+.login-to-comment a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-to-comment a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .listing-detail-container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .listing-detail-title {
+        font-size: 2em;
+    }
+    
+    .listing-detail-meta {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .comments-section {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .listing-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

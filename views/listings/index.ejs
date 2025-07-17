@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Listings Index</title>
+</head>
+<body>
+    <h1>Marketplace Listings</h1>
+    
+    <div class="actions">
+        <a href="/listings/new" class="btn btn-primary">Add New Listing</a>
+    </div>
+    
+    <div class="listings-container">
+        <% if (foundListings && foundListings.length > 0) { %>
+            <% foundListings.forEach(listing => { %>
+                <div class="listing-card">
+                    <a href="/listings/<%= listing._id %>">
+                        <% if (listing.image) { %>
+                            <img src="<%= listing.image %>" alt="<%= listing.title %>" class="listing-image">
+                        <% } %>
+                        <div class="listing-info">
+                            <h3 class="listing-title"><%= listing.title %></h3>
+                            <p class="listing-description"><%= listing.description %></p>
+                            <p class="listing-price"><%= listing.price %> BD</p>
+                            <div class="listing-meta">
+                                <small class="listing-date">Posted: <%= new Date(listing.createdAt).toLocaleDateString() %> 
+                                <% if (listing.seller && listing.seller.username) { %>
+                                    - Sold By <%= listing.seller.username %>
+                                <% } %>
+                                </small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="no-listings">
+                <p>No listings found.</p>
+                <a href="/listings/new" class="btn btn-primary">Create the first listing!</a>
+            </div>
+        <% } %>
+    </div>
+
+</body>
+</html>

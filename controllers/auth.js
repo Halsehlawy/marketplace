@@ -31,14 +31,12 @@ router.post('/sign-up', async (req, res) => {
     req.body.password = hashedPassword
     const newUser = await User.create(req.body)
 
-    res.send(`Thanks for signing up ${newUser.username}`)
         req.session.user = {
         username: newUser.username,
         _id: newUser._id,
     }
 
     req.session.save(() => {
-        console.log(req.session)
         res.redirect('/')
     })
 })
