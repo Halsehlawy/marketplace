@@ -3,15 +3,20 @@ const router = express.Router()
 const Listing = require('../models/listing')
 const mongoose = require('mongoose')
 const isLoggedIn = require('../middleware/is-logged-in')
+const upload = require('../config/multer')
 
+//
 router.get('/new',isLoggedIn,(req,res)=>{
     res.render('listings/new.ejs')
 })
-
-router.post('/', isLoggedIn, async(req,res)=>{
+//POST LISTING TO DB
+router.post('/', isLoggedIn, upload.single('image'),async(req,res)=>{
     try{
         req.body.seller = req.session.user._id
-        console.log(req.body)
+        req.body.image={
+            url:req.file.path,
+            cloudinary_id: req.file.filename
+        }
         await Listing.create(req.body)
         res.redirect('/listings/')
     }

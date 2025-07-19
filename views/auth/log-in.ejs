@@ -1,18 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
-  </head>
-  <body>
-    <h1>Log in</h1>
-    <form action="/auth/log-in" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <button type="submit">Sign in</button>
-    </form>
-  </body>
+<%- include('../partials/head') %>
+
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="mb-0"> Sign In</h2>
+                    <small>Welcome back to Marketplace</small>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form action="/auth/log-in" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-bold">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input type="text" 
+                                       name="username" 
+                                       id="username" 
+                                       class="form-control" 
+                                       placeholder="Enter your username"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-bold">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input type="password" 
+                                       name="password" 
+                                       id="password" 
+                                       class="form-control" 
+                                       placeholder="Enter your password"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                 Sign In
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card-footer text-center bg-light">
+                    <small class="text-muted">
+                        Don't have an account? 
+                        <a href="/auth/sign-up" class="text-decoration-none">Sign up here</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>

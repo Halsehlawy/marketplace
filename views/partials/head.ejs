@@ -3,7 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Instant dark mode - NO FLASH -->
+    <script>
+        (function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+    
+    <!-- CSS for instant dark mode application -->
+    <style>
+        html.dark-mode {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+        }
+        html.dark-mode body {
+            background-color: #121212 !important;
+            color: #ffffff !important;
+        }
+        .dark-mode .navbar.bg-primary {
+            background-color: #1a1a1a !important;
+        }
+        .dark-mode .card {
+            background-color: #2d2d2d !important;
+            color: #ffffff !important;
+            border-color: #444 !important;
+        }
+        .dark-mode .btn-primary {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+        }
+        .dark-mode .form-control {
+            background-color: #2d2d2d !important;
+            color: #ffffff !important;
+            border-color: #555 !important;
+        }
+        .dark-mode .form-control:focus {
+            background-color: #2d2d2d !important;
+            color: #ffffff !important;
+            border-color: #0d6efd !important;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+        }
+        .dark-mode .alert-warning {
+            background-color: #3d3d3d !important;
+            color: #ffc107 !important;
+            border-color: #ffc107 !important;
+        }
+        .dark-mode .text-muted {
+            color: #adb5bd !important;
+        }
+        .dark-mode .text-success {
+            color: #198754 !important;
+        }
+        .dark-mode .bg-success {
+            background-color: #198754 !important;
+        }
+        .dark-mode .card.bg-success {
+            background-color: #198754 !important;
+        }
+        .dark-mode .card.bg-success * {
+            color: #ffffff !important;
+        }
+        .dark-mode .card.bg-success .card-title {
+            color: #ffffff !important;
+        }
+        .dark-mode .card.bg-success h3 {
+            color: #ffffff !important;
+        }
+        .dark-mode .bg-success small {
+            color: #f8f9fa !important;
+        }
+        [data-bs-theme="dark"] .card.bg-success {
+            background-color: #198754 !important;
+        }
+        [data-bs-theme="dark"] .card.bg-success * {
+            color: #ffffff !important;
+        }
+        [data-bs-theme="dark"] .card.bg-success h3 {
+            color: #ffffff !important;
+        }
+        .dark-mode .border {
+            border-color: #444 !important;
+        }
+        .dark-mode .dropdown-menu {
+            background-color: #2d2d2d !important;
+            border-color: #444 !important;
+        }
+        .dark-mode .dropdown-item {
+            color: #ffffff !important;
+        }
+        .dark-mode .dropdown-item:hover {
+            background-color: #3d3d3d !important;
+        }
+    </style>
+    
     <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLlvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
     <title>Marketplace</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/listings">🛒 Marketplace</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">All Listings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Sell Item</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <!-- Dark Mode Toggle -->
+        <li class="nav-item me-3">
+          <div class="form-check form-switch mt-2">
+            <input class="form-check-input" type="checkbox" id="darkModeToggle">
+            <label class="form-check-label text-light" for="darkModeToggle">
+            </label>
+          </div>
+        </li>
+        
+        <% if (user) { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              👤 <%= user.username %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/auth/log-out">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/log-in">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/sign-up">Sign Up</a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+// Dark Mode Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    // Check for saved dark mode preference
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // Set toggle state to match current mode
+    if (isDarkMode) {
+        darkModeToggle.checked = true;
+    }
+    
+    // Toggle dark mode when switch is clicked
+    darkModeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            enableDarkMode();
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            disableDarkMode();
+            localStorage.setItem('darkMode', 'false');
+        }
+    });
+    
+    function enableDarkMode() {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+        document.documentElement.classList.add('dark-mode');
+    }
+    
+    function disableDarkMode() {
+        document.documentElement.removeAttribute('data-bs-theme');
+        document.documentElement.classList.remove('dark-mode');
+    }
+});
+</script>

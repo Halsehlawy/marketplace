@@ -1,31 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <title>Edit listing</title>
-</head>
-<body>
-    <div class="listing-detail-container">
-        <a href="/listings/<%= foundListing._id %>" class="back-button">← Back to Listing</a>
-        
-        <h1>Edit <%= foundListing.title %> Listing</h1>
-        <form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST">
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title" value="<%= foundListing.title %>">
+<%- include('../partials/head') %>
 
-            <label for="description">Description: </label>
-            <textarea name="description" id="description"><%= foundListing.description %></textarea>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-warning text-dark">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="mb-0">✏️ Edit Listing</h2>
+                        <a href="/listings/<%= foundListing._id %>" class="btn btn-outline-dark btn-sm">
+                            ← Back to Listing
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <form action="/listings/<%= foundListing._id %>?_method=PUT" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label fw-bold">Title</label>
+                            <input type="text" 
+                                   name="title" 
+                                   id="title" 
+                                   class="form-control" 
+                                   value="<%= foundListing.title %>" 
+                                   required>
+                        </div>
 
-            <label for="price">Price: </label>
-            <input type="number" name="price" id="price" value="<%= foundListing.price %>">
+                        <div class="mb-3">
+                            <label for="description" class="form-label fw-bold">Description</label>
+                            <textarea name="description" 
+                                      id="description" 
+                                      class="form-control" 
+                                      rows="4" 
+                                      required><%= foundListing.description %></textarea>
+                        </div>
 
-            <label for="image">Image URL: </label>
-            <input type="text" name="image" id="image" value="<%= foundListing.image || '' %>">
+                        <div class="mb-3">
+                            <label for="price" class="form-label fw-bold">Price (BHD)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">💰</span>
+                                <input type="number" 
+                                       name="price" 
+                                       id="price" 
+                                       class="form-control" 
+                                       value="<%= foundListing.price %>" 
+                                       step="0.01" 
+                                       min="0" 
+                                       required>
+                            </div>
+                        </div>
 
-            <button type="submit" class="action-btn edit-btn">Update Listing</button>
-        </form>
+                        <div class="mb-4">
+                            <label for="image" class="form-label fw-bold">Image URL</label>
+                            <input type="url" 
+                                   name="image" 
+                                   id="image" 
+                                   class="form-control" 
+                                   value="<%= foundListing.image && foundListing.image.url ? foundListing.image.url : '' %>" 
+                                   placeholder="https://example.com/image.jpg">
+                            <div class="form-text">Optional: Provide a URL to an image for your listing</div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-warning btn-lg">
+                                ✏️ Update Listing
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
 </body>
 </html>

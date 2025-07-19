@@ -437,3 +437,80 @@ form{
         justify-content: center;
     }
 }
+
+/* Dark Mode Styles */
+[data-bs-theme="dark"] {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: #1e1e1e !important;
+    border-color: #333 !important;
+}
+
+[data-bs-theme="dark"] .card-header {
+    background-color: #2d2d2d !important;
+    border-bottom-color: #333 !important;
+}
+
+[data-bs-theme="dark"] .form-control {
+    background-color: #2d2d2d !important;
+    border-color: #444 !important;
+    color: #ffffff !important;
+}
+
+[data-bs-theme="dark"] .form-control:focus {
+    background-color: #2d2d2d !important;
+    border-color: #666 !important;
+    box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.25) !important;
+}
+
+[data-bs-theme="dark"] .btn-outline-light {
+    border-color: #6c757d !important;
+}
+
+[data-bs-theme="dark"] .btn-outline-light:hover {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: #adb5bd !important;
+}
+
+[data-bs-theme="dark"] .border-primary {
+    border-color: #495057 !important;
+}
+
+[data-bs-theme="dark"] .border-success {
+    border-color: #198754 !important;
+}
+
+[data-bs-theme="dark"] .border-warning {
+    border-color: #fd7e14 !important;
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: #2d2d2d !important;
+}
+
+[data-bs-theme="dark"] .text-dark {
+    color: #ffffff !important;
+}
+
+/* Dark mode toggle styling */
+.form-check-input:checked {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* Smooth transitions for dark mode */
+*, *::before, *::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

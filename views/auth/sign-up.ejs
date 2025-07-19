@@ -1,20 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up</title>
-  </head>
-  <body>
-    <h1>Create a new account!</h1>
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" />
-      <button type="submit">Sign up</button>
-    </form>
-  </body>
+<%- include('../partials/head') %>
+
+<div class="container">
+    <div class="row justify-content-center my-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <h2 class="mb-0">📝 Sign Up</h2>
+                    <small>Join the Marketplace community</small>
+                </div>
+                
+                <div class="card-body p-4">
+                    <form action="/auth/sign-up" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label fw-bold">Username</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-person"></i>
+                                </span>
+                                <input type="text" 
+                                       name="username" 
+                                       id="username" 
+                                       class="form-control" 
+                                       placeholder="Choose a username"
+                                       required />
+                            </div>
+                            <div class="form-text">This will be visible to other users</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label fw-bold">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-lock"></i>
+                                </span>
+                                <input type="password" 
+                                       name="password" 
+                                       id="password" 
+                                       class="form-control" 
+                                       placeholder="Create a secure password"
+                                       minlength="6"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="confirmPassword" class="form-label fw-bold">Confirm Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-shield-check"></i>
+                                </span>
+                                <input type="password" 
+                                       name="confirmPassword" 
+                                       id="confirmPassword" 
+                                       class="form-control" 
+                                       placeholder="Confirm your password"
+                                       minlength="6"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                🎉 Create Account
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="card-footer text-center bg-light">
+                    <small class="text-muted">
+                        Already have an account? 
+                        <a href="/auth/log-in" class="text-decoration-none">Sign in here</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
 </html>
